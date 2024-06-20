@@ -1,12 +1,9 @@
 package com.girichev.client.dto.output;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
-import ru.sts.clientservice.clients.address.dto.output.AddressDtoOutputFull;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Value
 @Builder
@@ -24,6 +21,5 @@ public class ClientDtoOutputFull {
     String lastName;
     @NotBlank(message = "Необходимо указать статус клиента")
     String status;
-    List<AddressDtoOutputFull> addresses;
     String tokenPush;
 }
