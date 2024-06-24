@@ -14,4 +14,5 @@ public interface ClientsRepository extends JpaRepository<Client, Long> {
     String getClientUidByPhoneNumber(@Param("phoneNumber") String phoneNumber);
     @Query(value = "select c from Client as c where c.phoneNumber = :phoneNumber")
     Optional<Client> findClientByPhoneNumber(@Param("phoneNumber") String phoneNumber);
+    boolean existsByUid(String uid);
 }

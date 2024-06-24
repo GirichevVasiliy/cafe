@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ClientUpdateDtoInput {
+    String phoneNumber;
     String firstName;
     String lastName;
 }

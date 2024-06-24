@@ -9,8 +9,8 @@ import lombok.Value;
 @Value
 @Builder
 public class ClientDtoOutput {
-    @NotBlank(message = "Необходимо указать id клиента")
-    Long id;
+    @NotBlank(message = "Необходимо указать uid клиента")
+    String uid;
     Long chatId;
     @NotBlank(message = "Необходимо указать номер телефона клиента")
     String phoneNumber;
@@ -18,4 +18,8 @@ public class ClientDtoOutput {
     Boolean isPhoneConfirmed;
     String firstName;
     String lastName;
+    @NotBlank(message = "Необходимо указать статус клиента")
+    String status;
+    //List<AddressDtoOutput> addresses;
+    // String tokenPush;
 }
