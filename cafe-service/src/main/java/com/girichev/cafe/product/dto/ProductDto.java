@@ -1,4 +1,4 @@
-package com.girichev.cafe.dto;
+package com.girichev.cafe.product.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
