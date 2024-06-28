@@ -1,6 +1,5 @@
 package com.girichev.cafe.product.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,24 +17,24 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    Integer id;
+    @Column(name = "id")
+    private Integer id;
     @Column(name = "name", unique = true, nullable = false)
-    String name;
+    private String name;
     @Column(name = "description", nullable = false)
-    String description;
+    private String description;
     @Column(name = "price", nullable = false)
-    Integer price;
+    private Integer price;
     @Column(name = "stars")
-    Integer stars;
+    private Integer stars;
     @Column(name = "img", nullable = false)
-    String img;
+    private String img;
     @Column(name = "location", nullable = false)
-    String location;
-    @Column(name = "createdAt", nullable = false)
-    LocalDate createdAt;
-    @Column(name = "updatedAt")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    LocalDate updatedAt;
-    @Column(name = "typeId")
-    Integer typeId;
+    private String location;
+    @Column(name = "created_at", nullable = false)
+    private LocalDate createdAt;
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
+    @Column(name = "type_id")
+    private Integer typeId;
 }
