@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
-@JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductDto {
@@ -22,8 +21,8 @@ public class ProductDto {
     private String img;
     private String location;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate createdAt;
+    private LocalDate created_at;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate updatedAt;
-    private Integer typeId;
+    private LocalDate updated_at;
+    private Integer type_id;
 }
