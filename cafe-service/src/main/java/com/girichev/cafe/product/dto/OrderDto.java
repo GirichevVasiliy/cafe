@@ -1,6 +1,5 @@
 package com.girichev.cafe.product.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.List;
