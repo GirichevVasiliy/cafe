@@ -1,5 +1,6 @@
-package com.girichev.cafe.product.dto;
+package com.girichev.cafe.order.dto;
 
+import com.girichev.cafe.product.dto.ProductDto;
 import lombok.*;
 
 import java.util.List;

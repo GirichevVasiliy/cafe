@@ -1,7 +1,8 @@
-package com.girichev.cafe.product.mapper;
+package com.girichev.cafe.order.mapper;
 
-import com.girichev.cafe.product.dto.OrderDto;
-import com.girichev.cafe.product.model.Order;
+import com.girichev.cafe.order.dto.OrderDto;
+import com.girichev.cafe.order.model.Order;
+import com.girichev.cafe.product.mapper.ProductMapper;
 import lombok.experimental.UtilityClass;
 
 import java.util.stream.Collectors;

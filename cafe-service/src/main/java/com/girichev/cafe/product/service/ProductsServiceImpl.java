@@ -13,9 +13,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,16 +31,28 @@ public class ProductsServiceImpl implements ProductsService {
         Product product = ProductMapper.toEntity(productDto);
         try {
             return ProductMapper.toDto(productsRepository.save(product));
-        } catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             log.warn("Product {} can't add to database", productDto);
             throw new BadRequestException(String.format("Product '%s' can't add to database", productDto));
         }
-
     }
+
     @Transactional
     @Override
     public ProductDto updateProduct(ProductDto productDto) {
-        return null;
+        log.info("Update product");
+        Product productUpdate = ProductMapper.toEntity(productDto);
+        if (productsRepository.existsById(productDto.getId())) {
+            try {
+                return ProductMapper.toDto(productsRepository.save(productUpdate));
+            } catch (DataIntegrityViolationException e) {
+                log.warn("Product {} can't add to database", productDto);
+                throw new BadRequestException(String.format("Product '%s' can't add to database", productDto));
+            }
+        } else {
+            log.warn("Product {} can't add to database", productDto);
+            throw new BadRequestException(String.format("Product '%s' can't add to database", productDto));
+        }
     }
 
     @Override
@@ -51,10 +61,11 @@ public class ProductsServiceImpl implements ProductsService {
         return ProductMapper.toDto(productsRepository.getProductsById(id)
                 .orElseThrow(() -> new BadRequestException(String.format("Product can't find by id '%s'", id))));
     }
+
     @Transactional
     @Override
-    public Boolean deleteProduct(Integer id) {
-        return null;
+    public int deleteProduct(Integer id) {
+        return productsRepository.deleteProductById(id);
     }
 
     @Override
@@ -62,9 +73,10 @@ public class ProductsServiceImpl implements ProductsService {
         log.info("Find all products by typeId");
         return productsRepository.getAllProductsByOrderId(typeId).stream().map(ProductMapper::toDto).collect(Collectors.toList());
     }
+
     @Transactional
     @Override
-    public Boolean deleteAllProduct() {
-        return null;
+    public int deleteAllProduct(Integer typeId) {
+        return productsRepository.deleteAllProductByTypeId(typeId);
     }
 }

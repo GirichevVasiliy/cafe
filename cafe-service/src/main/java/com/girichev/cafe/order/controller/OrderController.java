@@ -1,7 +1,8 @@
-package com.girichev.cafe.product.controller;
+package com.girichev.cafe.order.controller;
 
+import com.girichev.cafe.order.dto.OrderDto;
+import com.girichev.cafe.order.service.OrdersService;
 import com.girichev.cafe.product.dto.ProductDto;
-import com.girichev.cafe.product.service.ProductsService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,27 +14,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/products")
+@RequestMapping("/api/v1/orders")
 @RequiredArgsConstructor
 @Slf4j
 @Validated
-public class ProductController {
-    private static final String PRODUCT_ID_REQUEST_HEADER = "X-Product-Id";
+public class OrderController {
+    private final OrdersService ordersService;
     private static final String ORDER_TYPE_ID_REQUEST_HEADER = "X-Order-Type-Id";
-    private static final String USER_ID_REQUEST_HEADER = "X-User-Id"; // подумать
-    private final ProductsService productsService;
-    @Operation(summary = "Add new product")
+    @Operation(summary = "Add new order")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductDto addProduct(@Valid @RequestBody ProductDto productDto){
-        return productsService.addProduct(productDto);
+    public OrderDto addOrder(@Valid @RequestBody OrderDto orderDto){
+        return ordersService.addOrder(orderDto);
     }
-    @Operation(summary = "Update product")
+    @Operation(summary = "Update order")
     @PatchMapping
-    public ProductDto updateProduct(@Valid @RequestBody ProductDto productDto){
-        return productsService.updateProduct(productDto);
+    public OrderDto updateOrder(@Valid @RequestBody OrderDto orderDto){
+        return ordersService.updateOrder(orderDto);
     }
-    @Operation(summary = "Get product by id")
+    /*@Operation(summary = "Get order by id")
     @GetMapping
     public ProductDto getProductById(@RequestHeader(PRODUCT_ID_REQUEST_HEADER) Integer id) {
         return productsService.getProductById(id);
@@ -47,12 +46,12 @@ public class ProductController {
     @Operation(summary = "Get all product by id")
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductDto> getProductAll(/*@RequestHeader(ORDER_TYPE_ID_REQUEST_HEADER) Integer typeId*/) {
+    public List<ProductDto> getProductAll(*//*@RequestHeader(ORDER_TYPE_ID_REQUEST_HEADER) Integer typeId*//*) {
         return productsService.getAllProducts(1);
     }
     @Operation(summary = "Delete all products by id")
     @DeleteMapping("/all")
     public int deleteAllProduct(@RequestHeader(ORDER_TYPE_ID_REQUEST_HEADER) Integer typeId) {
         return productsService.deleteAllProduct(1);
-    }
+    }*/
 }

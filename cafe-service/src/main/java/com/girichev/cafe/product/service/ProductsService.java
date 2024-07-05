@@ -11,9 +11,9 @@ public interface ProductsService {
 
     ProductDto getProductById(Integer id);
 
-    Boolean deleteProduct(Integer id);
+    int deleteProduct(Integer id);
 
     List<ProductDto> getAllProducts(Integer typeId);
 
-    Boolean deleteAllProduct();
+    int deleteAllProduct(Integer typeId);
 }

@@ -1,5 +1,6 @@
-package com.girichev.cafe.product.model;
+package com.girichev.cafe.order.model;
 
+import com.girichev.cafe.product.model.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
