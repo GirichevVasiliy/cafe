@@ -16,4 +16,6 @@ public interface ProductsService {
     List<ProductDto> getAllProducts(Integer typeId);
 
     int deleteAllProduct(Integer typeId);
+    List<ProductDto> getPopularProduct(Integer stars);
+    List<ProductDto> getRecommendProduct();
 }

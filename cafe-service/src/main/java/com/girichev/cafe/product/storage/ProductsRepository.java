@@ -25,4 +25,7 @@ public interface ProductsRepository extends JpaRepository<Product, Integer> {
     @Modifying
     @Query("delete from Product pr where pr.typeId = :typeId")
     int deleteAllProductByTypeId(@Param("typeId") Integer typeId);
+
+    @Query("select pr from Product pr where pr.stars >= :stars")
+    List<Product> getPopularProduct(@Param("stars") Integer stars);
 }

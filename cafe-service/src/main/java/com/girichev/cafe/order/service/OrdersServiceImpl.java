@@ -5,6 +5,7 @@ import com.girichev.cafe.order.dto.OrderDto;
 import com.girichev.cafe.order.mapper.OrderMapper;
 import com.girichev.cafe.order.model.Order;
 import com.girichev.cafe.order.storage.OrdersRepository;
+import com.girichev.cafe.product.dto.ProductDto;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -12,6 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -52,5 +58,20 @@ public class OrdersServiceImpl implements OrdersService {
     public int deleteOrderById(Integer typeId) {
         log.info("Delete order by typeId {}", typeId);
         return ordersRepository.deleteOrderByTypeId(typeId);
+    }
+
+    @Override
+    public List<OrderDto> getAllOrders() {
+      return ordersRepository.getAllOrders().stream().map(OrderMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<OrderDto> getPopularOrder() {
+        return ordersRepository.getAllOrders().stream().map(OrderMapper::toDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<OrderDto> getRecommendOrder() {
+        return ordersRepository.getAllOrders().stream().map(OrderMapper::toDto).collect(Collectors.toList());
     }
 }

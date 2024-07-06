@@ -79,4 +79,16 @@ public class ProductsServiceImpl implements ProductsService {
     public int deleteAllProduct(Integer typeId) {
         return productsRepository.deleteAllProductByTypeId(typeId);
     }
+
+    @Override
+    public List<ProductDto> getPopularProduct(Integer stars) {
+        stars = 1;
+        return productsRepository.getPopularProduct(stars).stream().map(ProductMapper::toDto).collect(Collectors.toList()); //TODO временно затычка
+    }
+
+    @Override
+    public List<ProductDto> getRecommendProduct() {
+       int stars = 0;
+        return productsRepository.getPopularProduct(stars).stream().map(ProductMapper::toDto).collect(Collectors.toList()); //TODO временно затычка
+    }
 }

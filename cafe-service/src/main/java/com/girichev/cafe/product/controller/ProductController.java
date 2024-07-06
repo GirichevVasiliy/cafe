@@ -55,4 +55,16 @@ public class ProductController {
     public int deleteAllProduct(@RequestHeader(ORDER_TYPE_ID_REQUEST_HEADER) Integer typeId) {
         return productsService.deleteAllProduct(1);
     }
+    @Operation(summary = "Get popular product")
+    @GetMapping("/popular")
+    @ResponseStatus(HttpStatus.OK)
+    public ProductDto getPopularProduct() {
+        return productsService.getPopularProduct(1).get(0);
+    }
+    @Operation(summary = "Get recommend product")
+    @GetMapping("/recommend")
+    @ResponseStatus(HttpStatus.OK)
+    public ProductDto getRecommendProduct() {
+        return productsService.getRecommendProduct().get(0);
+    }
 }
